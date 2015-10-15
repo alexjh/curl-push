@@ -60,3 +60,14 @@ curl -H "Expect:" -0 -include -v -k -X PUT -H "${AUTH}" -F 'resources=[]' -F "ap
 
 echo "START APP"
 curl -v -k -X PUT -d '{"console":true,"state":"STARTED"}' -H "${AUTH}" ${STACKATO_HOST}/v2/apps/${APP}
+
+echo ""
+echo "Sleeping"
+sleep 30
+
+echo "DELETE APP"
+curl -f -v -k -X DELETE -H "${AUTH}" ${STACKATO_HOST}/v2/apps/${APP}
+
+echo "DELETE ROUTE"
+curl -f -v -k -X DELETE -H "${AUTH}" ${STACKATO_HOST}/v2/routes/${ROUTE}
+
